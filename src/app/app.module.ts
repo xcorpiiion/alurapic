@@ -3,22 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ErrosComponent } from './erros/erros.component';
 import { NotFoundComponent } from './erros/not-found/not-found.component';
+import { HomeModule } from './home/Home.module';
 import { AppRoutingModule } from './photos/app.routing.module';
 import { PhotosModule } from './photos/photos.module';
-import { SigninComponent } from './home/signin/signin/signin.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrosComponent,
-    NotFoundComponent,
-    SigninComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     PhotosModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
