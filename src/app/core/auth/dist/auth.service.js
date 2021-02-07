@@ -8,16 +8,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.AuthService = void 0;
 var core_1 = require("@angular/core");
+var operators_1 = require("rxjs/operators");
 var API_URL = 'http://localhost:3000';
 var AuthService = /** @class */ (function () {
-    function AuthService(http) {
+    function AuthService(http, userService) {
         this.http = http;
+        this.userService = userService;
     }
     AuthService.prototype.authenticate = function (userName, password) {
+        var _this = this;
         return this.http.post(API_URL + '/user/login', {
             userName: userName,
             password: password
-        });
+        }, {
+            observe: 'response'
+        }).pipe(operators_1.tap(function (resposta) {
+            var authToken = resposta.headers.get('x-access-token');
+            _this.userService.setToken(authToken);
+            console.log(authToken);
+        }));
     };
     AuthService = __decorate([
         core_1.Injectable({
