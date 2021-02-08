@@ -28,11 +28,18 @@ var UserService = /** @class */ (function () {
     UserService.prototype.decodeAndNotify = function () {
         var token = this.tokenService.getToken();
         var user = jtw_decode(token);
+        this.userName = user.name;
         this.userSubject.next(user);
     };
     UserService.prototype.logout = function () {
         this.tokenService.removeToken();
         this.userSubject.next(null);
+    };
+    UserService.prototype.isLogged = function () {
+        return this.tokenService.hasToken();
+    };
+    UserService.prototype.getUserName = function () {
+        return this.userName;
     };
     UserService = __decorate([
         core_1.Injectable({
