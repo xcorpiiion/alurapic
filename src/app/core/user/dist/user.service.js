@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.UserService = void 0;
 var core_1 = require("@angular/core");
-var rxjs_1 = require("rxjs");
 var jtw_decode = require("jwt-decode");
+var rxjs_1 = require("rxjs");
 var UserService = /** @class */ (function () {
     function UserService(tokenService) {
         this.tokenService = tokenService;
-        this.userSubject = new rxjs_1.Subject();
+        this.userSubject = new rxjs_1.BehaviorSubject(null);
         if (this.tokenService.hasToken()) {
             this.decodeAndNotify();
         }
@@ -29,6 +29,10 @@ var UserService = /** @class */ (function () {
         var token = this.tokenService.getToken();
         var user = jtw_decode(token);
         this.userSubject.next(user);
+    };
+    UserService.prototype.logout = function () {
+        this.tokenService.removeToken();
+        this.userSubject.next(null);
     };
     UserService = __decorate([
         core_1.Injectable({
