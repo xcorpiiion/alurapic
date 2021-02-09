@@ -12,6 +12,7 @@ var router_1 = require("@angular/router");
 var auth_guard_1 = require("../core/auth/auth.guard");
 var not_found_component_1 = require("../erros/not-found/not-found.component");
 var sign_in_component_1 = require("../home/sign-in/sign-in.component");
+var singup_component_1 = require("../home/singup/singup.component");
 var photo_list_component_1 = require("./photo-list/photo-list.component");
 var photo_list_resolver_1 = require("./photo-list/photo-list.resolver");
 var routes = [
@@ -34,6 +35,10 @@ var routes = [
         path: '',
         component: sign_in_component_1.SignInComponent,
         canActivate: [auth_guard_1.AuthGuard]
+    },
+    {
+        path: 'signup',
+        component: singup_component_1.SingupComponent
     }
 ];
 var AppRoutingModule = /** @class */ (function () {

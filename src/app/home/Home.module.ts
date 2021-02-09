@@ -4,10 +4,12 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { ValidationMessageModule } from "../shared/components/validation-message/validation-message.module";
 import { SignInComponent } from "./sign-in/sign-in.component";
+import { SingupComponent } from "./singup/singup.component";
 
 @NgModule({
     declarations: [
-        SignInComponent
+        SignInComponent,
+        SingupComponent
     ],
     imports: [
         ReactiveFormsModule,
