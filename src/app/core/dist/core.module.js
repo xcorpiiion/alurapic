@@ -12,6 +12,7 @@ var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var request_interceptor_1 = require("./auth/request.interceptor");
+var footer_component_1 = require("./footer/footer.component");
 var header_component_1 = require("./header/header.component");
 var CoreModule = /** @class */ (function () {
     function CoreModule() {
@@ -22,8 +23,14 @@ var CoreModule = /** @class */ (function () {
                 common_1.CommonModule,
                 router_1.RouterModule
             ],
-            declarations: [header_component_1.HeaderComponent],
-            exports: [header_component_1.HeaderComponent],
+            declarations: [
+                header_component_1.HeaderComponent,
+                footer_component_1.FooterComponent
+            ],
+            exports: [
+                header_component_1.HeaderComponent,
+                footer_component_1.FooterComponent
+            ],
             providers: [
                 {
                     provide: http_1.HTTP_INTERCEPTORS,

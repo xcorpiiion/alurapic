@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { NotFoundComponent } from "../erros/not-found/not-found.component";
+import { PhotoFormComponent } from "./photo-form/photo-form.component";
 import { PhotoListComponent } from "./photo-list/photo-list.component";
 import { PhotoListResolver } from "./photo-list/photo-list.resolver";
 
@@ -23,7 +24,7 @@ const routes: Routes = [
     },
     {
         path: 'photo/add',
-        component: PhotoListComponent
+        component: PhotoFormComponent
     },
     {
         path: '**/',

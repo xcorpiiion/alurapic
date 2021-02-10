@@ -1,0 +1,20 @@
+<footer class="mt-5" *ngIf="(user$ | async) as user">
+  <div class="fixed-bottom bg-white p-1">
+    <div class="container">
+      <div class="row text-center">
+        <!-- Link para rota home -->
+        <div class="col-6">
+          <a [routerLink]="['']">
+            <em class="fa fa-home fa-2x"></em>
+          </a>
+        </div>
+        <!-- Link para rota add -->
+        <div class="col-6">
+          <a [routerLink]="['photo', 'add']">
+            <em class="fa fa-plus-circle fa-2x"></em>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

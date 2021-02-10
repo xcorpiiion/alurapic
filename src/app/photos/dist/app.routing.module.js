@@ -10,6 +10,7 @@ exports.AppRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var not_found_component_1 = require("../erros/not-found/not-found.component");
+var photo_form_component_1 = require("./photo-form/photo-form.component");
 var photo_list_component_1 = require("./photo-list/photo-list.component");
 var photo_list_resolver_1 = require("./photo-list/photo-list.resolver");
 var routes = [
@@ -31,7 +32,7 @@ var routes = [
     },
     {
         path: 'photo/add',
-        component: photo_list_component_1.PhotoListComponent
+        component: photo_form_component_1.PhotoFormComponent
     },
     {
         path: '**/',
