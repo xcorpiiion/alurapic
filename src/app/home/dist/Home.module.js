@@ -13,8 +13,10 @@ var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
 var validation_message_module_1 = require("../shared/components/validation-message/validation-message.module");
 var home_component_1 = require("./home.component");
+var home_routing_module_1 = require("./home.routing.module");
 var sign_in_component_1 = require("./sign-in/sign-in.component");
 var singup_component_1 = require("./singup/singup.component");
+var singup_service_1 = require("./singup/singup.service");
 var HomeModule = /** @class */ (function () {
     function HomeModule() {
     }
@@ -29,7 +31,11 @@ var HomeModule = /** @class */ (function () {
                 forms_1.ReactiveFormsModule,
                 common_1.CommonModule,
                 validation_message_module_1.ValidationMessageModule,
-                router_1.RouterModule
+                router_1.RouterModule,
+                home_routing_module_1.HomeRoutingModule
+            ],
+            providers: [
+                singup_service_1.SingupService
             ]
         })
     ], HomeModule);

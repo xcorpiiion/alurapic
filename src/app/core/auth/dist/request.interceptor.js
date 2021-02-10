@@ -6,22 +6,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.SingupService = void 0;
+exports.RequestInterceptor = void 0;
 var core_1 = require("@angular/core");
-var API_URL = "http://localhost:3000";
-var SingupService = /** @class */ (function () {
-    function SingupService(http) {
-        this.http = http;
+var RequestInterceptor = /** @class */ (function () {
+    function RequestInterceptor(tokenService) {
+        this.tokenService = tokenService;
     }
-    SingupService.prototype.checkUserNameTaken = function (userName) {
-        return this.http.get(API_URL + '/user/exists/' + userName);
+    RequestInterceptor.prototype.intercept = function (req, next) {
+        if (this.tokenService.hasToken()) {
+            var token = this.tokenService.getToken();
+            req = req.clone({
+                setHeaders: {
+                    'x-access-token': token
+                }
+            });
+        }
+        return next.handle(req);
     };
-    SingupService.prototype.signup = function (newUser) {
-        return this.http.post(API_URL + '/user/signup/', newUser);
-    };
-    SingupService = __decorate([
+    RequestInterceptor = __decorate([
         core_1.Injectable()
-    ], SingupService);
-    return SingupService;
+    ], RequestInterceptor);
+    return RequestInterceptor;
 }());
-exports.SingupService = SingupService;
+exports.RequestInterceptor = RequestInterceptor;

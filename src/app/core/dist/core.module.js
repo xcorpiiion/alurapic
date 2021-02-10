@@ -8,8 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.CoreModule = void 0;
 var common_1 = require("@angular/common");
+var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var request_interceptor_1 = require("./auth/request.interceptor");
 var header_component_1 = require("./header/header.component");
 var CoreModule = /** @class */ (function () {
     function CoreModule() {
@@ -21,7 +23,14 @@ var CoreModule = /** @class */ (function () {
                 router_1.RouterModule
             ],
             declarations: [header_component_1.HeaderComponent],
-            exports: [header_component_1.HeaderComponent]
+            exports: [header_component_1.HeaderComponent],
+            providers: [
+                {
+                    provide: http_1.HTTP_INTERCEPTORS,
+                    useClass: request_interceptor_1.RequestInterceptor,
+                    multi: true
+                }
+            ]
         })
     ], CoreModule);
     return CoreModule;

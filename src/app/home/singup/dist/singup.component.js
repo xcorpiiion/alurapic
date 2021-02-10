@@ -10,6 +10,7 @@ exports.SingupComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var lower_case_validator_1 = require("src/app/shared/validators/lower-case.validator");
+var user_not_taken_validator_service_1 = require("./user-not-taken.validator.service");
 var SingupComponent = /** @class */ (function () {
     function SingupComponent(formBuilder, userNotTakenValidatorService, service, router, platformDetectorService) {
         this.formBuilder = formBuilder;
@@ -42,7 +43,8 @@ var SingupComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-singup',
             templateUrl: './singup.component.html',
-            styleUrls: ['./singup.component.css']
+            styleUrls: ['./singup.component.css'],
+            providers: [user_not_taken_validator_service_1.UserNotTakenValidatorService]
         })
     ], SingupComponent);
     return SingupComponent;

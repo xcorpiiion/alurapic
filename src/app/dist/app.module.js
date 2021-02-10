@@ -13,7 +13,6 @@ var app_component_1 = require("./app.component");
 var core_module_1 = require("./core/core.module");
 var erros_component_1 = require("./erros/erros.component");
 var not_found_component_1 = require("./erros/not-found/not-found.component");
-var Home_module_1 = require("./home/Home.module");
 var app_routing_module_1 = require("./photos/app.routing.module");
 var photos_module_1 = require("./photos/photos.module");
 var AppModule = /** @class */ (function () {
@@ -30,7 +29,6 @@ var AppModule = /** @class */ (function () {
                 platform_browser_1.BrowserModule,
                 photos_module_1.PhotosModule,
                 app_routing_module_1.AppRoutingModule,
-                Home_module_1.HomeModule,
                 core_module_1.CoreModule
             ],
             providers: [],
