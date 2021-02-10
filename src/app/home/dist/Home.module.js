@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
 var validation_message_module_1 = require("../shared/components/validation-message/validation-message.module");
+var home_component_1 = require("./home.component");
 var sign_in_component_1 = require("./sign-in/sign-in.component");
 var singup_component_1 = require("./singup/singup.component");
 var HomeModule = /** @class */ (function () {
@@ -21,7 +22,8 @@ var HomeModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 sign_in_component_1.SignInComponent,
-                singup_component_1.SingupComponent
+                singup_component_1.SingupComponent,
+                home_component_1.HomeComponent
             ],
             imports: [
                 forms_1.ReactiveFormsModule,

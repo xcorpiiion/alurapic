@@ -11,11 +11,27 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_guard_1 = require("../core/auth/auth.guard");
 var not_found_component_1 = require("../erros/not-found/not-found.component");
+var home_component_1 = require("../home/home.component");
 var sign_in_component_1 = require("../home/sign-in/sign-in.component");
 var singup_component_1 = require("../home/singup/singup.component");
 var photo_list_component_1 = require("./photo-list/photo-list.component");
 var photo_list_resolver_1 = require("./photo-list/photo-list.resolver");
 var routes = [
+    {
+        path: '',
+        component: home_component_1.HomeComponent,
+        canActivate: [auth_guard_1.AuthGuard],
+        children: [
+            {
+                path: '',
+                component: sign_in_component_1.SignInComponent
+            },
+            {
+                path: 'signup',
+                component: singup_component_1.SingupComponent
+            }
+        ]
+    },
     {
         path: 'user/:userName',
         component: photo_list_component_1.PhotoListComponent,
@@ -30,15 +46,6 @@ var routes = [
     {
         path: '**/',
         component: not_found_component_1.NotFoundComponent
-    },
-    {
-        path: '',
-        component: sign_in_component_1.SignInComponent,
-        canActivate: [auth_guard_1.AuthGuard]
-    },
-    {
-        path: 'signup',
-        component: singup_component_1.SingupComponent
     }
 ];
 var AppRoutingModule = /** @class */ (function () {

@@ -21,6 +21,9 @@ var SignInComponent = /** @class */ (function () {
             userName: ['', forms_1.Validators.required],
             password: ['', forms_1.Validators.required]
         });
+        if (this.platformDetectorService.isPlatformBrowser()) {
+            this.userNameInput.nativeElement.focus();
+        }
     };
     SignInComponent.prototype.login = function () {
         var _this = this;
