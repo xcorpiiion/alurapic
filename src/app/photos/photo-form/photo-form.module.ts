@@ -1,7 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ImmediateClickModule } from "src/app/shared/components/card/card/directives/immediate-click/immediate-click.module";
 import { ValidationMessageModule } from "src/app/shared/components/validation-message/validation-message.module";
+import { PhotoModule } from "../photo/photo.module";
 import { PhotoFormComponent } from "./photo-form.component";
 
 @NgModule({
@@ -11,7 +13,9 @@ import { PhotoFormComponent } from "./photo-form.component";
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        ValidationMessageModule
+        ValidationMessageModule,
+        PhotoModule,
+        ImmediateClickModule
     ]
 })
 export class PhotoFormModule {

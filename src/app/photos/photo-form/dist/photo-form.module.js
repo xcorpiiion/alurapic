@@ -10,7 +10,9 @@ exports.PhotoFormModule = void 0;
 var common_1 = require("@angular/common");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var immediate_click_module_1 = require("src/app/shared/components/card/card/directives/immediate-click/immediate-click.module");
 var validation_message_module_1 = require("src/app/shared/components/validation-message/validation-message.module");
+var photo_module_1 = require("../photo/photo.module");
 var photo_form_component_1 = require("./photo-form.component");
 var PhotoFormModule = /** @class */ (function () {
     function PhotoFormModule() {
@@ -23,7 +25,9 @@ var PhotoFormModule = /** @class */ (function () {
             imports: [
                 common_1.CommonModule,
                 forms_1.ReactiveFormsModule,
-                validation_message_module_1.ValidationMessageModule
+                validation_message_module_1.ValidationMessageModule,
+                photo_module_1.PhotoModule,
+                immediate_click_module_1.ImmediateClickModule
             ]
         })
     ], PhotoFormModule);

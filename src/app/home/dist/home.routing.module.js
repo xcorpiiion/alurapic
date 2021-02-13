@@ -9,7 +9,7 @@ exports.__esModule = true;
 exports.HomeRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var auth_guard_1 = require("../core/auth/auth.guard");
+var login_guard_1 = require("../core/auth/login.guard");
 var home_component_1 = require("./home.component");
 var sign_in_component_1 = require("./sign-in/sign-in.component");
 var singup_component_1 = require("./singup/singup.component");
@@ -17,7 +17,7 @@ var routes = [
     {
         path: '',
         component: home_component_1.HomeComponent,
-        canActivate: [auth_guard_1.AuthGuard],
+        canActivate: [login_guard_1.LoginGuard],
         children: [
             {
                 path: '',

@@ -6,23 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.AuthGuard = void 0;
+exports.RequiresAutenticationGuard = void 0;
 var core_1 = require("@angular/core");
-var AuthGuard = /** @class */ (function () {
-    function AuthGuard(userService, router) {
+var RequiresAutenticationGuard = /** @class */ (function () {
+    function RequiresAutenticationGuard(userService, router) {
         this.userService = userService;
         this.router = router;
     }
-    AuthGuard.prototype.canActivate = function (route, state) {
+    RequiresAutenticationGuard.prototype.canActivate = function (route, state) {
         if (!this.userService.isLogged()) {
             this.router.navigate(['']);
             return false;
         }
         return true;
     };
-    AuthGuard = __decorate([
+    RequiresAutenticationGuard = __decorate([
         core_1.Injectable({ providedIn: 'root' })
-    ], AuthGuard);
-    return AuthGuard;
+    ], RequiresAutenticationGuard);
+    return RequiresAutenticationGuard;
 }());
-exports.AuthGuard = AuthGuard;
+exports.RequiresAutenticationGuard = RequiresAutenticationGuard;

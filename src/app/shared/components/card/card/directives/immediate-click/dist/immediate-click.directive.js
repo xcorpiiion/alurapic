@@ -6,23 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.AuthGuard = void 0;
+exports.ImmediateClickDirective = void 0;
 var core_1 = require("@angular/core");
-var AuthGuard = /** @class */ (function () {
-    function AuthGuard(userService, router) {
-        this.userService = userService;
-        this.router = router;
+var ImmediateClickDirective = /** @class */ (function () {
+    function ImmediateClickDirective(element, platformDetector) {
+        this.element = element;
+        this.platformDetector = platformDetector;
     }
-    AuthGuard.prototype.canActivate = function (route, state) {
-        if (!this.userService.isLogged()) {
-            this.router.navigate(['']);
-            return false;
+    ImmediateClickDirective.prototype.ngOnInit = function () {
+        if (this.platformDetector.isPlatformBrowser) {
+            this.element.nativeElement.click();
         }
-        return true;
     };
-    AuthGuard = __decorate([
-        core_1.Injectable({ providedIn: 'root' })
-    ], AuthGuard);
-    return AuthGuard;
+    ImmediateClickDirective = __decorate([
+        core_1.Directive({
+            selector: '[immediateClick]'
+        })
+    ], ImmediateClickDirective);
+    return ImmediateClickDirective;
 }());
-exports.AuthGuard = AuthGuard;
+exports.ImmediateClickDirective = ImmediateClickDirective;

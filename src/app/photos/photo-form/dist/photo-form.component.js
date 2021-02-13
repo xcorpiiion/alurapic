@@ -10,8 +10,10 @@ exports.PhotoFormComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var PhotoFormComponent = /** @class */ (function () {
-    function PhotoFormComponent(formBuilder) {
+    function PhotoFormComponent(formBuilder, photoService, router) {
         this.formBuilder = formBuilder;
+        this.photoService = photoService;
+        this.router = router;
     }
     PhotoFormComponent.prototype.ngOnInit = function () {
         this.photoForm = this.formBuilder.group({
@@ -19,6 +21,19 @@ var PhotoFormComponent = /** @class */ (function () {
             description: ['', forms_1.Validators.maxLength(300)],
             allowComments: [true]
         });
+    };
+    PhotoFormComponent.prototype.upload = function () {
+        var _this = this;
+        var description = this.photoForm.get('description').value;
+        var allowComments = this.photoForm.get('allowComments').value;
+        this.photoService.upload(description, allowComments, this.file).subscribe(function () { return _this.router.navigate(['']); });
+    };
+    PhotoFormComponent.prototype.handleFile = function (file) {
+        var _this = this;
+        this.file = file;
+        var reader = new FileReader();
+        reader.onload = function (event) { return _this.priview = event.target.result; };
+        reader.readAsDataURL(file);
     };
     PhotoFormComponent = __decorate([
         core_1.Component({
