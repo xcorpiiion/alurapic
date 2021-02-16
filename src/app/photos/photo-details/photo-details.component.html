@@ -7,18 +7,16 @@
     <div class="col-lg-4 p-4">
       <small>
         <p class="text-left break-word">{{photo?.description}}</p>
+        <div class="text-left mb-4">
+          <em class="fa fa-comment-o fa-2x mr-2 ml-2"></em>{{ photo.comments }}
+          <em appPhotoOwnerOnly [ownedPhoto]="photo" (click)="remove()" class="fa fa-trash-o fa-2x pull-right"></em>
+        </div>
         <hr>
       </small>
-      <div class="mt-4">
-        <form>
-          <div class="input-group">
-            <textarea class="form-control"></textarea>
-            <div class="input-group-append">
-              <button class="btn btn-primary pull-left">Publish</button>
-            </div>
-          </div>
-        </form>
-      </div>
+      <app-photo-comments *ngIf="photo.allowComments; else warnning" [id]="id"></app-photo-comments>
+      <ng-template #warnning>
+        <p class="text-danger">User has disabled comment</p>
+      </ng-template>
     </div>
   </div>
 </div>

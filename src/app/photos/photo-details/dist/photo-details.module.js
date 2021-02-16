@@ -9,8 +9,13 @@ exports.__esModule = true;
 exports.PhotoDetailsModule = void 0;
 var common_1 = require("@angular/common");
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
+var router_1 = require("@angular/router");
+var validation_message_module_1 = require("src/app/shared/components/validation-message/validation-message.module");
 var photo_module_1 = require("../photo/photo.module");
+var photo_comments_component_1 = require("./photo-comments/photo-comments.component");
 var photo_details_component_1 = require("./photo-details.component");
+var photo_owner_only_directive_1 = require("./photo-owner-only/photo-owner-only.directive");
 var PhotoDetailsModule = /** @class */ (function () {
     function PhotoDetailsModule() {
     }
@@ -18,13 +23,19 @@ var PhotoDetailsModule = /** @class */ (function () {
         core_1.NgModule({
             imports: [
                 common_1.CommonModule,
-                photo_module_1.PhotoModule
+                photo_module_1.PhotoModule,
+                router_1.RouterModule,
+                forms_1.ReactiveFormsModule,
+                validation_message_module_1.ValidationMessageModule
             ],
             declarations: [
-                photo_details_component_1.PhotoDetailsComponent
+                photo_details_component_1.PhotoDetailsComponent,
+                photo_comments_component_1.PhotoCommentsComponent,
+                photo_owner_only_directive_1.PhotoOwnerOnlyDirective
             ],
             exports: [
-                photo_details_component_1.PhotoDetailsComponent
+                photo_details_component_1.PhotoDetailsComponent,
+                photo_comments_component_1.PhotoCommentsComponent
             ]
         })
     ], PhotoDetailsModule);

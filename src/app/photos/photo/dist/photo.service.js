@@ -31,6 +31,17 @@ var PhotoService = /** @class */ (function () {
     PhotoService.prototype.findById = function (id) {
         return this.http.get(API + 'photos/' + id);
     };
+    PhotoService.prototype.getComments = function (id) {
+        return this.http.get(API + 'photos/' + id + '/comments');
+    };
+    PhotoService.prototype.addComment = function (id, commentText) {
+        return this.http.post(API + 'photos/' + id + '/comments', {
+            commentText: commentText
+        });
+    };
+    PhotoService.prototype.remove = function (id) {
+        return this.http["delete"](API + 'photos/' + id);
+    };
     PhotoService = __decorate([
         core_1.Injectable({ providedIn: 'root' })
     ], PhotoService);

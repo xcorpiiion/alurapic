@@ -9,18 +9,25 @@ exports.__esModule = true;
 exports.PhotoDetailsComponent = void 0;
 var core_1 = require("@angular/core");
 var PhotoDetailsComponent = /** @class */ (function () {
-    function PhotoDetailsComponent(route, photoService) {
+    function PhotoDetailsComponent(route, photoService, router) {
         this.route = route;
         this.photoService = photoService;
+        this.router = router;
     }
     PhotoDetailsComponent.prototype.ngOnInit = function () {
-        this.photo$ = this.photoService.findById(this.route.snapshot.params.photoId);
+        this.id = this.route.snapshot.params.photoId;
+        this.photo$ = this.photoService.findById(this.id);
+    };
+    PhotoDetailsComponent.prototype.remove = function () {
+        var _this = this;
+        this.photoService.remove(this.id).subscribe(function () {
+            _this.router.navigate(['']);
+        });
     };
     PhotoDetailsComponent = __decorate([
         core_1.Component({
             selector: 'app-photo-details',
-            templateUrl: './photo-details.component.html',
-            styleUrls: ['./photo-details.component.css']
+            templateUrl: './photo-details.component.html'
         })
     ], PhotoDetailsComponent);
     return PhotoDetailsComponent;
