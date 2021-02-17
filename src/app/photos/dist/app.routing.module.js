@@ -30,21 +30,40 @@ var routes = [
         component: photo_list_component_1.PhotoListComponent,
         resolve: {
             photos: photo_list_resolver_1.PhotoListResolver
+        },
+        data: {
+            title: 'Timeline'
         }
     },
     {
         path: 'photo/add',
         component: photo_form_component_1.PhotoFormComponent,
-        canActivate: [auth_guard_1.AuthGuard]
+        canActivate: [auth_guard_1.AuthGuard],
+        data: {
+            title: 'Photo upload'
+        }
     },
     {
         path: 'photo/:photoId',
         component: photo_details_component_1.PhotoDetailsComponent,
-        canActivate: [auth_guard_1.AuthGuard]
+        canActivate: [auth_guard_1.AuthGuard],
+        data: {
+            title: 'Photo detail'
+        }
     },
     {
         path: '**/',
-        component: not_found_component_1.NotFoundComponent
+        redirectTo: 'not-found',
+        data: {
+            title: 'Not found'
+        }
+    },
+    {
+        path: 'not-found',
+        component: not_found_component_1.NotFoundComponent,
+        data: {
+            title: 'Not found'
+        }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {

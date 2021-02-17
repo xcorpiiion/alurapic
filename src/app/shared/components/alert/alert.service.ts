@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Alert, AlertType } from './alert';
 
@@ -7,34 +8,48 @@ import { Alert, AlertType } from './alert';
 })
 export class AlertService {
 
-  alertSubject: Subject<Alert>
+  alertSubject: Subject<Alert> = new Subject<Alert>()
+  keepAfterRouteChange = false
 
-  constructor() {
-
+  constructor(router: Router) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        if (this.keepAfterRouteChange) {
+          this.keepAfterRouteChange = false
+        } else {
+          this.clear()
+        }
+      }
+    })
   }
 
-  private alert(alertType: AlertType, message: string) {
+  private alert(alertType: AlertType, message: string, keepAfterRouteChange: boolean) {
+    this.keepAfterRouteChange = keepAfterRouteChange
     this.alertSubject.next(new Alert(alertType, message))
   }
 
-  sucess(message: string) {
-    this.alert(AlertType.SUCESS, message)
+  sucess(message: string, keepAfterRouteChange: boolean = false) {
+    this.alert(AlertType.SUCESS, message, keepAfterRouteChange)
   }
 
-  warnning(message: string) {
-    this.alert(AlertType.WARNNING, message)
+  warnning(message: string, keepAfterRouteChange: boolean = false) {
+    this.alert(AlertType.WARNNING, message, keepAfterRouteChange)
   }
 
-  danger(message: string) {
-    this.alert(AlertType.DANGER, message)
+  danger(message: string, keepAfterRouteChange: boolean = false) {
+    this.alert(AlertType.DANGER, message, keepAfterRouteChange)
   }
 
-  info(message: string) {
-    this.alert(AlertType.INFO, message)
+  info(message: string, keepAfterRouteChange: boolean = false) {
+    this.alert(AlertType.INFO, message, keepAfterRouteChange)
   }
 
   getAlert() {
     return this.alertSubject.asObservable()
+  }
+
+  clear() {
+    this.alertSubject.next(null)
   }
 
 }

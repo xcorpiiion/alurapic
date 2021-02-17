@@ -9,6 +9,8 @@ exports.__esModule = true;
 exports.PhotoService = void 0;
 var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
+var operators_1 = require("rxjs/operators");
+var rxjs_1 = require("rxjs");
 var API = 'http://localhost:3000/';
 var PhotoService = /** @class */ (function () {
     function PhotoService(http) {
@@ -26,7 +28,10 @@ var PhotoService = /** @class */ (function () {
         formData.append('description', description);
         formData.append('allowComments', allowComments ? 'true' : 'false');
         formData.append('imageFile', file);
-        return this.http.post(API + 'photos/upload', formData);
+        return this.http.post(API + 'photos/upload', formData, {
+            observe: 'events',
+            reportProgress: true
+        });
     };
     PhotoService.prototype.findById = function (id) {
         return this.http.get(API + 'photos/' + id);
@@ -41,6 +46,13 @@ var PhotoService = /** @class */ (function () {
     };
     PhotoService.prototype.remove = function (id) {
         return this.http["delete"](API + 'photos/' + id);
+    };
+    PhotoService.prototype.like = function (id) {
+        return this.http.post(API + 'photos/' + id + '/like', {}, {
+            observe: 'response'
+        }).pipe(operators_1.map(function (res) { return true; })).pipe(operators_1.catchError(function (erro) {
+            return erro.status == '304' ? rxjs_1.of(false) : rxjs_1.throwError(erro);
+        }));
     };
     PhotoService = __decorate([
         core_1.Injectable({ providedIn: 'root' })

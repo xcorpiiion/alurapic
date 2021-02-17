@@ -11,6 +11,8 @@ var common_1 = require("@angular/common");
 var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var alert_module_1 = require("../shared/components/alert/alert.module");
+var loading_module_1 = require("../shared/components/loading/loading.module");
 var request_interceptor_1 = require("./auth/request.interceptor");
 var footer_component_1 = require("./footer/footer.component");
 var header_component_1 = require("./header/header.component");
@@ -21,7 +23,9 @@ var CoreModule = /** @class */ (function () {
         core_1.NgModule({
             imports: [
                 common_1.CommonModule,
-                router_1.RouterModule
+                router_1.RouterModule,
+                alert_module_1.AlertModule,
+                loading_module_1.LoadingModule
             ],
             declarations: [
                 header_component_1.HeaderComponent,

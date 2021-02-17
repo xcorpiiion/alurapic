@@ -21,11 +21,17 @@ var routes = [
         children: [
             {
                 path: '',
-                component: sign_in_component_1.SignInComponent
+                component: sign_in_component_1.SignInComponent,
+                data: {
+                    title: 'Sign in'
+                }
             },
             {
                 path: 'signup',
-                component: singup_component_1.SingupComponent
+                component: singup_component_1.SingupComponent,
+                data: {
+                    title: 'Sign up'
+                }
             }
         ]
     }

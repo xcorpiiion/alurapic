@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ShowIfLoggedModule } from 'src/app/shared/components/card/card/directives/show-if-logged/show-if-logged.module';
 import { ValidationMessageModule } from 'src/app/shared/components/validation-message/validation-message.module';
 import { PhotoModule } from '../photo/photo.module';
 import { PhotoCommentsComponent } from './photo-comments/photo-comments.component';
@@ -14,7 +15,8 @@ import { PhotoOwnerOnlyDirective } from './photo-owner-only/photo-owner-only.dir
     PhotoModule,
     RouterModule,
     ReactiveFormsModule,
-    ValidationMessageModule
+    ValidationMessageModule,
+    ShowIfLoggedModule
   ],
   declarations: [
     PhotoDetailsComponent,

@@ -1,4 +1,6 @@
 <header class="fixed-top">
+  <app-loading></app-loading>
+  <app-alert></app-alert>
   <nav class="navbar navbar-light bg-white">
     <a class="navbar-brand">ALURAPIC</a>
     <div *ngIf="(user$ | async) as user; else login">
@@ -13,4 +15,7 @@
       </span>
     </ng-template>
   </nav>
+  <div class="fixed-top">
+    <app-alert></app-alert>
+  </div>
 </header>

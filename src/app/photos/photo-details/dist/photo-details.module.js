@@ -11,6 +11,7 @@ var common_1 = require("@angular/common");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
+var show_if_logged_module_1 = require("src/app/shared/components/card/card/directives/show-if-logged/show-if-logged.module");
 var validation_message_module_1 = require("src/app/shared/components/validation-message/validation-message.module");
 var photo_module_1 = require("../photo/photo.module");
 var photo_comments_component_1 = require("./photo-comments/photo-comments.component");
@@ -26,7 +27,8 @@ var PhotoDetailsModule = /** @class */ (function () {
                 photo_module_1.PhotoModule,
                 router_1.RouterModule,
                 forms_1.ReactiveFormsModule,
-                validation_message_module_1.ValidationMessageModule
+                validation_message_module_1.ValidationMessageModule,
+                show_if_logged_module_1.ShowIfLoggedModule
             ],
             declarations: [
                 photo_details_component_1.PhotoDetailsComponent,

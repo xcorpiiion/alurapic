@@ -9,19 +9,38 @@ exports.__esModule = true;
 exports.PhotoDetailsComponent = void 0;
 var core_1 = require("@angular/core");
 var PhotoDetailsComponent = /** @class */ (function () {
-    function PhotoDetailsComponent(route, photoService, router) {
+    function PhotoDetailsComponent(route, photoService, router, alertService, userService) {
         this.route = route;
         this.photoService = photoService;
         this.router = router;
+        this.alertService = alertService;
+        this.userService = userService;
     }
     PhotoDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.id = this.route.snapshot.params.photoId;
         this.photo$ = this.photoService.findById(this.id);
+        this.photo$.subscribe(function () { }, function (error) {
+            console.error(error);
+            _this.router.navigate(['not-found']);
+        });
     };
     PhotoDetailsComponent.prototype.remove = function () {
         var _this = this;
         this.photoService.remove(this.id).subscribe(function () {
-            _this.router.navigate(['']);
+            _this.alertService.sucess('Photo removed', true);
+            _this.router.navigate(['/user', _this.userService.getUserName()]);
+        }, function (error) {
+            console.error(error);
+            _this.alertService.warnning('Could not delete the photo!', true);
+        });
+    };
+    PhotoDetailsComponent.prototype.like = function (photo) {
+        var _this = this;
+        this.photoService.like(photo.id).subscribe(function (liked) {
+            if (liked) {
+                _this.photo$ = _this.photoService.findById(photo.id);
+            }
         });
     };
     PhotoDetailsComponent = __decorate([

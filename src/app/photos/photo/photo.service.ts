@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Photo } from "./photo";
 import { PhotoComment } from "../photo-details/photo-comment";
+import { catchError, map } from "rxjs/operators";
+import { of, throwError } from "rxjs";
 
 const API = 'http://localhost:3000/'
 
@@ -25,7 +27,10 @@ export class PhotoService {
         formData.append('description', description)
         formData.append('allowComments', allowComments ? 'true' : 'false')
         formData.append('imageFile', file)
-        return this.http.post(API + 'photos/upload', formData)
+        return this.http.post(API + 'photos/upload', formData, {
+            observe: 'events',
+            reportProgress: true
+        })
     }
 
     findById(id: number) {
@@ -44,5 +49,13 @@ export class PhotoService {
 
     remove(id: number) {
         return this.http.delete(API + 'photos/' + id)
+    }
+
+    like(id: number) {
+        return this.http.post(API + 'photos/' + id + '/like', {}, {
+            observe: 'response'
+        }).pipe(map(res => true)).pipe(catchError(erro => {
+            return erro.status == '304' ? of(false) : throwError(erro)
+        }))
     }
 }
