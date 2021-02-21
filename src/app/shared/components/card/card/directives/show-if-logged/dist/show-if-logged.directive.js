@@ -15,13 +15,21 @@ var ShowIfLoggedDirective = /** @class */ (function () {
         this.userService = userService;
     }
     ShowIfLoggedDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this.currentDisplay = getComputedStyle(this.element.nativeElement).display;
+        this.userService.getUser().subscribe(function (user) {
+            if (user) {
+                _this.renderer.setStyle(_this.element.nativeElement, 'display', _this.currentDisplay);
+            }
+            else {
+                _this.currentDisplay = getComputedStyle(_this.element.nativeElement).display;
+                _this.renderer.setStyle(_this.element.nativeElement, 'display', 'none');
+            }
+        });
         if (!this.userService.isLogged()) {
             this.renderer.setStyle(this.element.nativeElement, 'display', 'none');
         }
     };
-    __decorate([
-        core_1.Input()
-    ], ShowIfLoggedDirective.prototype, "ownedPhoto");
     ShowIfLoggedDirective = __decorate([
         core_1.Directive({
             selector: '[appShowIfLogged]'

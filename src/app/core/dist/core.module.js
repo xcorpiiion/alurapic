@@ -12,7 +12,9 @@ var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var alert_module_1 = require("../shared/components/alert/alert.module");
+var show_if_logged_module_1 = require("../shared/components/card/card/directives/show-if-logged/show-if-logged.module");
 var loading_module_1 = require("../shared/components/loading/loading.module");
+var menu_module_1 = require("../shared/components/menu/menu.module");
 var request_interceptor_1 = require("./auth/request.interceptor");
 var footer_component_1 = require("./footer/footer.component");
 var header_component_1 = require("./header/header.component");
@@ -25,7 +27,9 @@ var CoreModule = /** @class */ (function () {
                 common_1.CommonModule,
                 router_1.RouterModule,
                 alert_module_1.AlertModule,
-                loading_module_1.LoadingModule
+                loading_module_1.LoadingModule,
+                menu_module_1.MenuModule,
+                show_if_logged_module_1.ShowIfLoggedModule
             ],
             declarations: [
                 header_component_1.HeaderComponent,

@@ -1,13 +1,28 @@
 <header class="fixed-top">
+  <!-- loading -->
   <app-loading></app-loading>
-  <app-alert></app-alert>
+
   <nav class="navbar navbar-light bg-white">
-    <a class="navbar-brand">ALURAPIC</a>
+
+    <!-- Menu toggle clique -->
+    <a class="navbar-brand"><em tabindex="0" (keyup.space)="menu.toggle()" (click)="menu.toggle()"
+        class="fa fa-bars mr-2"></em> ALURAPIC</a>
+
+    <!-- Menu toggle -->
+    <app-menu #menu>
+      <ul class="list-unstyled">
+        <li><a appShowIfLogged [routerLink]="['photo', 'add']">Upload</a></li>
+      </ul>
+    </app-menu>
+
+    <!-- Logout -->
     <div *ngIf="(user$ | async) as user; else login">
       <em class="fa fa-user-circle mr-1"></em>
       <a class="mr-1">{{user.name}}</a>
       <a (click)="logout()">(Logout)</a>
     </div>
+
+    <!-- Mensagem de login -->
     <ng-template #login>
       <span class="navbar-text">
         <a [routerLink]="['']"></a>
@@ -15,6 +30,8 @@
       </span>
     </ng-template>
   </nav>
+
+  <!-- Alert -->
   <div class="fixed-top">
     <app-alert></app-alert>
   </div>

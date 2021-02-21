@@ -1,7 +1,7 @@
 <div class="container">
   <form [formGroup]="photoForm" class="row" (submit)="upload()">
     <!-- File -->
-    <div class="col-md-6 text-center">
+    <div class="col-md-2 text-center">
       <div class="form-group" *ngIf="!priview; else previewImage">
         <button immediateClick type="button" (click)="fileInput.click()" class="btn btn-primary">
           <em class="fa fa-image fa-4x align-middle"></em>
@@ -11,12 +11,12 @@
         <app-validation-message *ngIf="photoForm.get('file').errors?.required" textError="Please, select a photo">
         </app-validation-message>
       </div>
-      <ng-template #previewImage>
-        <div class="text-center">
-          <ap-photo class="w-25 p-3" [url]="priview" title="Preview"></ap-photo>
-        </div>
-      </ng-template>
     </div>
+    <ng-template #previewImage>
+      <div class="text-center w-25 h-25">
+        <ap-photo class="w-50" [url]="priview" title="Preview"></ap-photo>
+      </div>
+    </ng-template>
 
     <!-- Description -->
     <div class="col-md-6">
